@@ -1,17 +1,25 @@
+const readline = require('readline');
+
 function subtractNumbers() {
-    var num1 = parseFloat(prompt("Enter the first number:"));
-    var num2 = parseFloat(prompt("Enter the second number:"));
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
 
-    if (isNaN(num1) || isNaN(num2)) {
-        alert("Please enter valid numbers.");
-        return;
-    }
+    rl.question('Enter the first number: ', (num1) => {
+        rl.question('Enter the second number: ', (num2) => {
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
 
-    var result = num1 - num2;
-    return result;
+            if (isNaN(num1) || isNaN(num2)) {
+                console.log("Please enter valid numbers.");
+            } else {
+                const result = num1 - num2;
+                console.log("The result of subtraction is:", result);
+            }
+            rl.close();
+        });
+    });
 }
 
-var subtractionResult = subtractNumbers();
-if (subtractionResult !== undefined) {
-    console.log("The result of subtraction is:", subtractionResult);
-}
+subtractNumbers();
